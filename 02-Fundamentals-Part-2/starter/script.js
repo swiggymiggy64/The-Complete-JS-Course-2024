@@ -274,7 +274,7 @@
 // neighbours[findPolandIndex] = "Republic of Poland";
 // console.log(neighbours);
 
-// ! Challenge
+// ! Challenge 2
 
 // const tips = [];
 // const total = [];
@@ -422,4 +422,255 @@
 
 // . A
 
-// ! Challenge
+// const myCountry = {
+//   country: "UK",
+//   capital: "London",
+//   language: "Inglish innit",
+//   population: 22000000,
+//   neighbours: 0,
+
+//   describe: function () {
+//     console.log(
+//       `${this.country} has ${this.population} ${this.language} people, ${this.neighbours} neighbours & a capital called ${this.capital} fam.`
+//     );
+//   },
+
+//   checkIsland: function () {
+//     this.neighbours === 0 ? (this.isIsland = true) : (this.isIsland = false);
+//   },
+// };
+
+// myCountry.describe();
+// myCountry.checkIsland();
+// console.log(myCountry);
+
+// ! Challenge 3
+
+// const mark = {
+//   firstName: "Mark",
+//   lastName: "Miller",
+//   weight: 78,
+//   height: 1.69,
+//   calcBMI: function () {
+//     this.bmi = this.weight / this.height ** 2;
+//   },
+// };
+
+// const john = {
+//   firstName: "John",
+//   lastName: "Smith",
+//   weight: 92,
+//   height: 1.95,
+//   calcBMI: function () {
+//     this.bmi = this.weight / this.height ** 2;
+//   },
+// };
+
+// mark.calcBMI();
+// john.calcBMI();
+
+// console.log(mark.bmi, john.bmi);
+// console.log(mark, john);
+
+// if (mark.bmi > john.bmi) {
+//   console.log(
+//     `${mark.firstName}'s BMI (${mark.bmi}) is higher than ${john.firstName}'s BMI (${john.bmi})`
+//   );
+// } else if (john.bmi > mark.bmi) {
+//   console.log(
+//     `${john.firstName}'s BMI (${john.bmi}) is higher than ${mark.firstName}'s BMI (${mark.bmi})`
+//   );
+// }
+
+// * Iteration: The for Loop
+
+// // console.log('Lifting weights repetition 1 🏋️‍♀️');
+// // console.log('Lifting weights repetition 2 🏋️‍♀️');
+// // console.log('Lifting weights repetition 3 🏋️‍♀️');
+// // console.log('Lifting weights repetition 4 🏋️‍♀️');
+// // console.log('Lifting weights repetition 5 🏋️‍♀️');
+// // console.log('Lifting weights repetition 6 🏋️‍♀️');
+// // console.log('Lifting weights repetition 7 🏋️‍♀️');
+// // console.log('Lifting weights repetition 8 🏋️‍♀️');
+// // console.log('Lifting weights repetition 9 🏋️‍♀️');
+// // console.log('Lifting weights repetition 10 🏋️‍♀️');
+
+// // for loop keeps running while condition is TRUE
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+// }
+
+// . A
+
+// for (let voter = 1; voter <= 50; voter++) {
+//   console.log(`Voter number ${voter} is currently voting`);
+// }
+
+// * Looping Arrays, Breaking and Continuing
+// const jonas = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+//   true,
+// ];
+// const types = [];
+
+// // console.log(jonas[0])
+// // console.log(jonas[1])
+// // ...
+// // console.log(jonas[4])
+// // jonas[5] does NOT exist
+
+// for (let i = 0; i < jonas.length; i++) {
+//   // Reading from jonas array
+//   console.log(jonas[i], typeof jonas[i]);
+
+//   // Filling types array
+//   // types[i] = typeof jonas[i];
+//   types.push(typeof jonas[i]);
+// }
+
+// console.log(types);
+
+// const years = [1991, 2007, 1969, 2020];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+//   ages.push(2037 - years[i]);
+// }
+// console.log(ages);
+
+// // continue and break
+// console.log("--- ONLY STRINGS ---");
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] !== "string") continue;
+
+//   console.log(jonas[i], typeof jonas[i]);
+// }
+
+// console.log("--- BREAK WITH NUMBER ---");
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] === "number") break;
+
+//   console.log(jonas[i], typeof jonas[i]);
+// }
+
+// . A
+
+// const populations = [1441, 3333, 6666, 500];
+
+// function percentageOfWorld(population) {
+//   return (population / 7900) * 100;
+// }
+
+// let percentages = [];
+// for (let i = 0; i < populations.length; i++) {
+//   percentages.push(percentageOfWorld(populations[i]));
+// }
+
+// console.log(percentages);
+
+// * Looping Backwards and Loops in Loops
+
+// const jonas = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+//   true,
+// ];
+
+// // 0, 1, ..., 4
+// // 4, 3, ..., 0
+
+// for (let i = jonas.length - 1; i >= 0; i--) {
+//   console.log(i, jonas[i]);
+// }
+
+// for (let exercise = 1; exercise < 4; exercise++) {
+//   console.log(`-------- Starting exercise ${exercise}`);
+
+//   for (let rep = 1; rep < 6; rep++) {
+//     console.log(`Exercise ${exercise}: Lifting weight repetition ${rep} 🏋️‍♀️`);
+//   }
+// }
+
+// . A
+
+// const listOfNeighbours = [
+//   ["Canada", "Mexico"],
+//   ["Spain"],
+//   ["Norway", "Sweden", "Russia"],
+// ];
+
+// for (let neighbour = 0; neighbour < listOfNeighbours.length; neighbour++) {
+//   for (
+//     let country = 0;
+//     country < listOfNeighbours[neighbour].length;
+//     country++
+//   ) {
+//     console.log(`Neighbour: ${listOfNeighbours[neighbour][country]}`);
+//   }
+// }
+
+// * The while Loop
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+// }
+
+// let rep = 1;
+// while (rep <= 10) {
+//   console.log(`WHILE: Lifting weights repetition ${rep} 🏋️‍♀️`);
+//   rep++;
+// }
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+//   if (dice === 6) console.log("Loop is about to end...");
+// }
+
+// . A
+
+// const populations = [1441, 3333, 6666, 500];
+
+// function percentageOfWorld(population) {
+//   return (population / 7900) * 100;
+// }
+
+// let percentages = [];
+// let counter = 0;
+// while (counter < populations.length) {
+//   percentages.push(percentageOfWorld(populations[counter]));
+//   counter++;
+// }
+
+// console.log(percentages);
+
+// ! Challenge 4
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+function calcTip(bill) {
+  if (bill >= 50 && bill <= 300) {
+    tips.push(bill * 0.15);
+    totals.push(bill * 0.15 + bill);
+  } else {
+    tips.push(bill * 0.2);
+    totals.push(bill * 0.2 + bill);
+  }
+}
+
+for (let i = 0; i < bills.length; i++) {
+  calcTip(bills[i]);
+}
+
+console.log(tips);
+console.log(totals);
