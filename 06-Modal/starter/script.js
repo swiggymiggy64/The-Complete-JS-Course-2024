@@ -19,7 +19,13 @@ for (let i = 0; i < btnsOpenModal.length; i++) {
   console.log(btnsOpenModal[i].addEventListener("click", handleOpenModal));
 }
 
+function handleKeyDown(e) {
+  // console.log(e.key);
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    handleCloseModal();
+  }
+}
+
 btnCloseModal.addEventListener("click", handleCloseModal);
 overlay.addEventListener("click", handleCloseModal);
-
-// * 014 Handling an Esc Keypress Event
+document.addEventListener("keydown", handleKeyDown);
