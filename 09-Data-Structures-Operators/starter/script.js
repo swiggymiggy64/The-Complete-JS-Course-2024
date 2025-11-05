@@ -4,6 +4,22 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -12,22 +28,10 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  // ES6 enhanced object literals
+  openingHours,
 
-  order: function (starterIndex, mainIndex) {
+  order(starterIndex, mainIndex) {
     // console.log([this.starterMenu[starterIndex], this.mainMenu[mainIndex]]);
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
@@ -50,34 +54,192 @@ const restaurant = {
   },
 };
 
+// * Optional Chaining
+
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+//   console.log(restaurant.openingHours.mon.open);
+
+// console.log(restaurant.openingHours.mon.open);
+
+// WITH optional chaining
+// console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours?.mon?.open);
+
+// Example
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   // console.log(`On ${day}, we open at ${open}`);
+// }
+
+// Methods
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+// Arrays
+// const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+// // const users = [];
+
+// console.log(users[0]?.name ?? 'User array empty');
+
+// Old way
+// if (users.length > 0) console.log(users[0].name);
+// else console.log('user array empty');
+
+// * Enhanced Object Literals
+
+// * The for-of Loop
+
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// for (const item of menu) console.log(item);
+
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`);
+// }
+
+// console.log([...menu.entries()]);
+
+// ! Challenge 1
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// const [players1, players2] = game.players;
+// // console.log(players1, players2);
+
+// const [gk, ...fieldPlayers] = players1;
+// // console.log(gk, fieldPlayers);
+
+// const allPlayers = [...players1, ...players2];
+// // console.log(allPlayers);
+
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// // console.log(players1Final);
+
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// // console.log(team1, draw, team2);
+
+// function printGoals(...playerNames) {
+//   console.log(playerNames);
+//   console.log(`Goals: ${playerNames.length}`);
+// }
+// // printGoals(...game.scored);
+
+// team1 < team2 && console.log(`${game.team1} is likely to win!`);
+// team1 > team2 && console.log(`${game.team2} is likely to win!`);
+
+// * Logical Assignment Operators
+
+// const rest1 = {
+//   name: 'Capri',
+//   // numGuests: 20,
+//   numGuests: 0,
+// };
+
+// const rest2 = {
+//   name: 'La Piazza',
+//   owner: 'Giovanni Rossi',
+// };
+
+// // OR assignment operator
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
+// // rest1.numGuests ||= 10;
+// // rest2.numGuests ||= 10;
+
+// // nullish assignment operator (null or undefined)
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
+
+// // AND assignment operator
+// // rest1.owner = rest1.owner && '<ANONYMOUS>';
+// // rest2.owner = rest2.owner && '<ANONYMOUS>';
+// rest1.owner &&= '<ANONYMOUS>';
+// rest2.owner &&= '<ANONYMOUS>';
+
+// console.log(rest1);
+// console.log(rest2);
+
+// * The Nullish Coalescing Operator
+
+// restaurant.numGuests = 0;
+// const guests = restaurant.numGuests || 10;
+// console.log(guests);
+
+// // Nullish: null and undefined (NOT 0 or '')
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect);
+
 // * Short Circuiting (&& and ||)
 
-// console.log('---- OR ----');
-// // Use ANY data type, return ANY data type, short-circuiting
-// console.log(3 || 'Jonas');
-// console.log('' || 'Jonas');
-// console.log(true || 0);
-// console.log(undefined || null);
-// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+// // console.log('---- OR ----');
+// // // Use ANY data type, return ANY data type, short-circuiting
+// // console.log(3 || 'Jonas');
+// // console.log('' || 'Jonas');
+// // console.log(true || 0);
+// // console.log(undefined || null);
+// // console.log(undefined || 0 || '' || 'Hello' || 23 || null);
 
-restaurant.numGuests = 0;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-// console.log(guests1);
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// // console.log(guests1);
 
-const guests2 = restaurant.numGuests || 10;
-// console.log(guests2);
+// const guests2 = restaurant.numGuests || 10;
+// // console.log(guests2);
 
-// console.log('---- AND ----');
-// console.log(0 && 'Jonas');
-// console.log(7 && 'Jonas');
-// console.log('Hello' && 23 && null && 'jonas');
+// // console.log('---- AND ----');
+// // console.log(0 && 'Jonas');
+// // console.log(7 && 'Jonas');
+// // console.log('Hello' && 23 && null && 'jonas');
 
-// Practical example
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'spinach');
-}
+// // Practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
 
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 // * Rest Pattern and Parameters
 
