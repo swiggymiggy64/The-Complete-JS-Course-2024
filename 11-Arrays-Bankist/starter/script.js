@@ -61,9 +61,43 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+      <div class="movements__row">
+        <div class="movements__type movements__type--${type}">
+          ${i + 1} ${type}</div>
+        <div class="movements__value">${mov}€</div>
+      </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
+
+const createUsernames = accs => {
+  accs.forEach(acc => {
+    acc.username = acc.owner
+      .toLocaleLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
+// console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // . LECTURES
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // * Simple Array Methods
 
@@ -175,4 +209,55 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //   console.log(`${value}: ${value}`);
 // });
 
-// * 008 Creating DOM Elements
+// ! Coding Challenge #1
+
+// const dogsJulia1 = [3, 5, 2, 12, 7];
+// const dogsKate1 = [4, 1, 15, 8, 3];
+// const dogsJulia2 = [9, 16, 6, 8, 3];
+// const dogsKate2 = [10, 5, 6, 1, 4];
+
+// const checkDogs = (dogsJulia, dogsKate) => {
+//   const dogsJuliaNoCat = dogsJulia.slice();
+//   dogsJuliaNoCat.splice(0, 1);
+//   dogsJuliaNoCat.splice(-2);
+//   const joined = dogsJuliaNoCat.concat(dogsKate);
+
+//   joined.forEach((age, i) => {
+//     console.log(
+//       age >= 3
+//         ? `Dog number ${i + 1} is an adult, and is ${age} years old`
+//         : `Dog number ${i + 1} is still a puppy 🐶`
+//     );
+//   });
+// };
+
+// checkDogs(dogsJulia1, dogsKate1);
+// checkDogs(dogsJulia2, dogsKate2);
+
+// * The map Method
+
+// const eurToUsd = 1.1;
+
+// // const movementsUSD = movements.map(function (mov) {
+// //   return mov * eurToUsd;
+// // });
+
+// const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+// console.log(movements);
+// console.log(movementsUSD);
+
+// // If we dont use .map it would have to be this
+// const movementsUSDfor = [];
+// for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+// console.log(movementsUSDfor);
+
+// const movementsDescriptions = movements.map(
+//   (mov, i) =>
+//     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+// );
+// console.log(movementsDescriptions);
+
+// * 013 The filter Method
