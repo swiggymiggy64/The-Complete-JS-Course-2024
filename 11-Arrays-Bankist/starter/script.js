@@ -61,10 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach((mov, i) => {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
       <div class="movements__row">
@@ -175,6 +177,52 @@ btnTransfer.addEventListener('click', e => {
     receiverAcc.movements.push(amount);
     updateUI(currentAccount);
   }
+});
+
+btnLoan.addEventListener('click', e => {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+});
+
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+
+    // Delete account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
+let sorted = false;
+
+btnSort.addEventListener('click', e => {
+  e.preventDefault();
+
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
@@ -436,4 +484,120 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 // console.log(account);
 
-// * 021 The findIndex Method
+// * some and every
+
+// console.log(movements);
+
+// // EQUALITY
+// console.log('.includes = equality check', movements.includes(-130));
+
+// // SOME: CONDITION
+// console.log(
+//   '.some = condition check',
+//   movements.some(mov => mov === -130)
+// );
+
+// const anyDeposits = movements.some(mov => mov > 0);
+// console.log('anyDeposits', anyDeposits);
+
+// // EVERY
+// console.log(
+//   '.every1',
+//   movements.every(mov => mov > 0)
+// );
+// console.log(
+//   '.every2',
+//   account4.movements.every(mov => mov > 0)
+// );
+
+// // Separate callback
+// const deposit = mov => mov > 0; // Condition as a variable
+// console.log('.some', movements.some(deposit));
+// console.log('.every', movements.every(deposit));
+// console.log('.filter', movements.filter(deposit));
+
+// * flat and flatMap
+
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
+
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
+
+// // flat
+// const overalBalance = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalance);
+
+// // flatMap
+// const overalBalance2 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalance2);
+
+// * Sorting Arrays
+
+// // Strings
+// const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+// console.log(owners.sort());
+// console.log(owners);
+
+// // Numbers
+// console.log(movements);
+
+// // return < 0, A, B (keep order)
+// // return > 0, B, A (switch order)
+
+// // Ascending
+// // movements.sort((a, b) => {
+// //   if (a > b) return 1;
+// //   if (a < b) return -1;
+// // });
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+
+// // Descending
+// // movements.sort((a, b) => {
+// //   if (a > b) return -1;
+// //   if (a < b) return 1;
+// // });
+// movements.sort((a, b) => b - a);
+// console.log(movements);
+
+// * More Ways of Creating and Filling Arrays
+
+// // Emprty arrays + fill method
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// // Emprty arrays + fill method
+// const x = new Array(7);
+// console.log('x', x);
+// // console.log(x.map(() => 5));
+// x.fill(1, 3, 5);
+// // x.fill(1);
+// console.log('x2', x);
+
+// arr.fill(23, 2, 6);
+// console.log('arr', arr);
+
+// // Array.from
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log('y', y);
+
+// const z = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log('z', z);
+
+// labelBalance.addEventListener('click', function () {
+//   const movementsUI = Array.from(
+//     document.querySelectorAll('.movements__value'),
+//     el => Number(el.textContent.replace('€', ''))
+//   );
+//   console.log(movementsUI);
+
+//   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+// });
+
+// * Array Methods Practice
