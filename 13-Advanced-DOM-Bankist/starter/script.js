@@ -478,4 +478,18 @@ slider();
 //   if (el !== h1) el.style.transform = 'scale(0.5)';
 // });
 
-// * NEXT: 21 Lifecycle DOM Events
+// * Lifecycle DOM Events
+
+// document.addEventListener('DOMContentLoaded', function (e) {
+//   console.log('HTML parsed and DOM tree built!', e);
+// });
+
+// window.addEventListener('load', function (e) {
+//   console.log('Page fully loaded', e);
+// });
+
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
