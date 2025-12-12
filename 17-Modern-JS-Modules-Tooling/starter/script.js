@@ -13,11 +13,11 @@
 // console.log(ShoppingCart.totalPrice, ShoppingCart.tq);
 
 import add, { cart } from './shoppingCart.js';
-// add('pizza', 2);
-// add('bread', 5);
-// add('apples', 4);
+add('pizza', 2);
+add('bread', 5);
+add('apples', 4);
 
-// console.log(cart);
+console.log(cart);
 
 // * Top-Level Await (ES2022)
 
@@ -90,47 +90,29 @@ import add, { cart } from './shoppingCart.js';
 
 // * Introduction to NPM
 
-// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
-import { cloneDeep } from '../node_modules/lodash-es';
-
-// import { cloneDeep } from 'lodash';
+// import cloneDeep from '../node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es';
+// import cloneDeep from 'lodash';
 
 const state = {
   cart: [
     { product: 'bread', quantity: 5 },
-    { product: 'pizza', quantity: 5 },
+    { product: 'pizza', quantity: 3 },
   ],
   user: { loggedIn: true },
 };
+
 const stateClone = Object.assign({}, state);
 const stateDeepClone = cloneDeep(state);
 
 state.user.loggedIn = false;
 console.log(stateClone);
-
 console.log(stateDeepClone);
+
+// * Bundling with Parcel & NPM Scripts
 
 if (module.hot) {
   module.hot.accept();
 }
 
-class Person {
-  #greeting = 'Hey';
-  constructor(name) {
-    this.name = name;
-    console.log(`${this.#greeting}, ${this.name}`);
-  }
-}
-const jonas = new Person('Jonas');
-
-console.log('Jonas' ?? null);
-
-console.log(cart.find(el => el.quantity >= 2));
-Promise.resolve('TEST').then(x => console.log(x));
-
-import 'core-js/stable';
-// import 'core-js/stable/array/find';
-// import 'core-js/stable/promise';
-
-// Polifilling async functions
-import 'regenerator-runtime/runtime';
+// * 012 Configuring Babel and Polyfilling

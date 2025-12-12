@@ -1,13 +1,13 @@
 {
-  "name": "17-modern-js-modules-tooling",
+  "name": "17-modern-js-modules-tooling-starter",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "author": "",
+  "author": "Mig",
   "type": "commonjs",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
