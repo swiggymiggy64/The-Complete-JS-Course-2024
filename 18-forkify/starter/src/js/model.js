@@ -113,5 +113,3 @@ const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
 // clearBookmarks();
-
-// * 024 Uploading a New Recipe - Part 1
