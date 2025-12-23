@@ -155,4 +155,4 @@ export const uploadRecipe = async function (newRecipe) {
   }
 };
 
-// * 027 Wrapping Up Final Considerations
+// * 003 Simple Deployment With Netlify
